@@ -33,7 +33,7 @@ function renderShow() {
     userRender.innerHTML += `
     <div class="col-span-12 md:col-span-6 lg:col-span-4">
         <div
-          class="flex justify-between border border-2 px-6 py-3 rounded"
+          class="flex justify-between border  px-6 py-3 rounded"
         >
           <input type="checkbox" onclick="taskDone(${idx})"/>
           <p id="task${idx}">${ele.name}</p>
