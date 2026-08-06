@@ -15,6 +15,7 @@ let submitUser = document
 
     let userObject = {
       name: inputUser.value,
+      complete: false,
     };
 
     arr.push(userObject);
@@ -35,8 +36,8 @@ function renderShow() {
         <div
           class="flex justify-between border px-6 py-3 rounded"
         >
-          <input type="checkbox" onclick="taskDone(${idx})"/>
-            <p class=" break-words" id="task${idx}">${ele.name}</p>
+          <input type="checkbox" onclick="taskDone(${idx})" ${ele.complete ? "checked" : ""}/>
+            <p class=" break-words ${ele.complete ? "line-through" : ""}" id="task${idx} ">${ele.name}</p>
           <div class="flex gap-2">
             <button>
               <i class="fa-solid fa-pen-to-square" onclick="editElement(${idx})"></i>
@@ -77,9 +78,9 @@ function editElement(idx) {
 }
 
 function taskDone(idx) {
-  const taskParagraph = document.getElementById(`task${idx}`);
-  taskParagraph.classList.toggle("line-through");
-  taskDone.style.color = "red";
+  arr[idx].complete = !arr[idx].complete;
+  localStorage.setItem("tasks", JSON.stringify(arr));
+  renderShow();
 }
 
 deleteAll.onclick = (event) => {
